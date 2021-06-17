@@ -8,7 +8,7 @@ describe('Can navigate', () => {
     cy.get('[data-cy="add"]').click();
     cy.get('[data-cy="add"]').click();
     cy.get('[data-cy="cart"]').click();
-    cy.wait(1000);
+    cy.wait(3000);
     cy.get('[data-cy="checkout"]').click();
     cy.get('[data-cy="name"]').type('Herman');
     cy.get('[data-cy="lastname"]').type('Meier');
