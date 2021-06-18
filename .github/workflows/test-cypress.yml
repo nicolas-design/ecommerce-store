@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
       # Use Cypress GitHub action to run tests
       # https://github.com/cypress-io/github-action
-      - name: Cypress run
+      - name: cypress run --headed --browser chrome --spec 'cypress/integration/**'
         uses: cypress-io/github-action@v2
         with:
           build: yarn migrate up
