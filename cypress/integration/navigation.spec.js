@@ -10,6 +10,7 @@ describe('Can navigate', () => {
     cy.get('[data-cy="cart"]').click();
 
     cy.get('[data-cy="checkout"]').should('be.visible').click();
+    cy.contains('Shipping adress');
     cy.get('[data-cy="name"]').should('be.visible').type('Herman');
     cy.get('[data-cy="lastname"]').type('Meier');
     cy.get('[data-cy="adress"]').type('Babastraß 233');
