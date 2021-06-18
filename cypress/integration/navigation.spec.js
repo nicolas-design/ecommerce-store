@@ -12,6 +12,7 @@ describe('Can navigate', () => {
     cy.wait(5000);
 
     cy.get('[data-cy="checkout"]', { timeout: 3000 }).click();
+    cy.visit('http://localhost:3000/checkOut');
     cy.get('[data-cy="name"]').type('Herman');
     cy.get('[data-cy="lastname"]').type('Meier');
     cy.get('[data-cy="adress"]').type('Babastraß 233');
