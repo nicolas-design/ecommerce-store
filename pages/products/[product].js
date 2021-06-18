@@ -55,7 +55,7 @@ const price = css`
   margin-top: 5px;
 `;
 
-export default function ringPage(props) {
+export default function RingPage(props) {
   const prodsFiltered = props.data;
 
   return (

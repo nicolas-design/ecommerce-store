@@ -11,6 +11,7 @@ describe('Can navigate', () => {
 
     cy.get('[data-cy="checkout"]').should('be.visible').click();
     cy.location('pathname', { timeout: 10000 }).should('include', '/checkout');
+    cy.contains('Shipping address').should('be.visible');
     cy.get('[data-cy="name"]', { timeout: 10000 })
       .should('be.visible')
       .type('Herman');

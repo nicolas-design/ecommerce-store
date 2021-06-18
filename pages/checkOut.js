@@ -126,7 +126,7 @@ export default function CheckOut(props) {
         <h1>Check out</h1>
 
         <div>
-          <h3>Shipping adress</h3>
+          <h3>Shipping address</h3>
         </div>
         <div css={item}>
           <label data-cy="name">
