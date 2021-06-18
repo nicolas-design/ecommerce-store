@@ -102,7 +102,7 @@ export default function CartPage(props) {
         <div>Total price: {totalPrice}€</div>
       </div>
       <div css={linkStyle}>
-        <Link href="/checkOut">
+        <Link href="/checkout">
           <a data-cy="checkout">Check Out</a>
         </Link>
       </div>
