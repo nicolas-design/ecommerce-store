@@ -8,8 +8,10 @@ describe('Can navigate', () => {
     cy.get('[data-cy="add"]').click();
     cy.get('[data-cy="add"]').click();
     cy.get('[data-cy="cart"]').click();
-    cy.wait(3000);
-    cy.get('[data-cy="checkout"]').click();
+
+    cy.wait(5000);
+
+    cy.get('[data-cy="checkout"]', { timeout: 3000 }).click();
     cy.get('[data-cy="name"]').type('Herman');
     cy.get('[data-cy="lastname"]').type('Meier');
     cy.get('[data-cy="adress"]').type('Babastraß 233');
