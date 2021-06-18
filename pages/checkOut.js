@@ -129,9 +129,8 @@ export default function CheckOut(props) {
           <h3>Shipping adress</h3>
         </div>
         <div css={item}>
-          <label>
+          <label data-cy="name">
             <input
-              data-cy="name"
               css={input}
               placeholder="Name"
               onChange={(e) => {
@@ -382,11 +381,12 @@ export default function CheckOut(props) {
         /^[a-zA-Z]+ [a-zA-Z]+$/.test(pcardholder) ? (
           <Link href="/thankyou">
             <a data-cy="buttonCheck">
-              <button >Submit</button>
+              <button>Submit</button>
             </a>
           </Link>
         ) : (
-          <button data-cy="buttonCheck"
+          <button
+            data-cy="buttonCheck"
             onClick={() => {
               setName(pname);
               setLastName(plastName);
