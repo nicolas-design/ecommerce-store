@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { getCartValueQuantityById } from '../utils/cookies';
+import { setPrice } from '../utils/cookies';
 
 const wrap = css`
   min-height: 100vh;
@@ -45,9 +46,6 @@ const input = css`
   padding: 5px;
 `;
 
-const buttonStyle = css`
-  text-decoration: underline;
-`;
 const txtStyle = css`
   min-width: 300px;
   display: flex;
@@ -56,9 +54,8 @@ const txtStyle = css`
 
 export default function CheckOut(props) {
   const prodsFiltered = props.data;
-  const [prods, setProds] = useState(prodsFiltered);
-  console.log('prodFilter', prodsFiltered);
-  const [totalPrice, setTotalPrice] = useState(setPrice());
+
+  const totalPrice = setPrice(prodsFiltered);
 
   const [name, setName] = useState(null);
   const [lastName, setLastName] = useState(null);
@@ -93,15 +90,15 @@ export default function CheckOut(props) {
     ) {
       return false;
     }
-    var carray = new Array();
-    for (var i = 0; i < cardNumber.length; i++) {
+    const carray = [];
+    for (let i = 0; i < cardNumber.length; i++) {
       carray[carray.length] = cardNumber.charCodeAt(i) - 48;
     }
     carray.reverse();
-    var sum = 0;
-    for (var i = 0; i < carray.length; i++) {
-      var tmp = carray[i];
-      if (i % 2 != 0) {
+    let sum = 0;
+    for (let i = 0; i < carray.length; i++) {
+      let tmp = carray[i];
+      if (i % 2 !== 0) {
         tmp *= 2;
         if (tmp > 9) {
           tmp -= 9;
@@ -109,17 +106,9 @@ export default function CheckOut(props) {
       }
       sum += tmp;
     }
-    return sum % 10 == 0;
+    return sum % 10 === 0;
   }
 
-  function setPrice() {
-    let sum = 0;
-    prods.map((prod) => {
-      sum += getCartValueQuantityById(prod.id) * prod.productPrice;
-    });
-
-    return Math.round(sum * 100) / 100;
-  }
   return (
     <div css={wrap}>
       <div css={wrap2}>
@@ -138,8 +127,9 @@ export default function CheckOut(props) {
               }}
             />
           </label>
+
           {name === null ? (
-            <div></div>
+            <div />
           ) : !/\d/.test(name) && name.length > 2 && name.length < 50 ? (
             <div>&#10004;</div>
           ) : (
@@ -158,7 +148,7 @@ export default function CheckOut(props) {
             />
           </label>
           {lastName === null ? (
-            <div></div>
+            <div />
           ) : !/\d/.test(lastName) &&
             lastName.length > 1 &&
             lastName.length < 50 ? (
@@ -179,7 +169,7 @@ export default function CheckOut(props) {
             />
           </label>
           {adress === null ? (
-            <div></div>
+            <div />
           ) : /\d+$/.test(adress) && adress.length > 2 && adress.length < 50 ? (
             <div>&#10004;</div>
           ) : (
@@ -197,7 +187,7 @@ export default function CheckOut(props) {
               }}
             />
             {city === null ? (
-              <div></div>
+              <div />
             ) : !/\d/.test(city) && city.length > 1 && city.length < 50 ? (
               <div>&#10004;</div>
             ) : (
@@ -217,7 +207,7 @@ export default function CheckOut(props) {
             />
           </label>
           {country === null ? (
-            <div></div>
+            <div />
           ) : !/\d/.test(country) &&
             country.length > 1 &&
             country.length < 50 ? (
@@ -238,7 +228,7 @@ export default function CheckOut(props) {
             />
           </label>
           {post === null ? (
-            <div></div>
+            <div />
           ) : typeof post === 'string' &&
             post.length > 0 &&
             post.length < 11 ? (
@@ -259,7 +249,7 @@ export default function CheckOut(props) {
             />
           </label>
           {email === null ? (
-            <div></div>
+            <div />
           ) : /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
               email,
             ) &&
@@ -285,7 +275,7 @@ export default function CheckOut(props) {
             />
           </label>
           {card === null ? (
-            <div></div>
+            <div />
           ) : validateCreditCardNumber(card) ? (
             <div>&#10004;</div>
           ) : (
@@ -315,7 +305,7 @@ export default function CheckOut(props) {
         </div>
         <div css={txtStyle}>
           {date === null ? (
-            <div></div>
+            <div />
           ) : Date.parse(date) - Date.parse(new Date()) > 0 ? (
             <div>&#10004;</div>
           ) : (
@@ -323,7 +313,7 @@ export default function CheckOut(props) {
           )}
 
           {ccv === null ? (
-            <div></div>
+            <div />
           ) : ccv.length >= 3 && ccv.length <= 4 && /^\d+$/.test(ccv) ? (
             <div>&#10004;</div>
           ) : (
@@ -342,7 +332,7 @@ export default function CheckOut(props) {
             />
           </label>
           {cardholder === null ? (
-            <div></div>
+            <div />
           ) : /^[a-zA-Z]+ [a-zA-Z]+$/.test(cardholder) ? (
             <div>&#10004;</div>
           ) : (
@@ -411,9 +401,9 @@ export default function CheckOut(props) {
 
 export async function getServerSideProps(context) {
   console.log(context.req.cookies);
-  let cookies = JSON.parse(context.req.cookies.cart);
+  const cookies = JSON.parse(context.req.cookies.cart);
   console.log(cookies);
-  const { getProductById, getProducts } = await import('../utils/database');
+  const { getProductById } = await import('../utils/database');
   const res = await cookies.map((obj) => {
     return getProductById(obj.id);
   });
