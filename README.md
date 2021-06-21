@@ -2,17 +2,17 @@
 
 ## Product Page
 
-![Screenshot 1](./public/screenshot3.PNG)
+![Screenshot 1](./public/screenshot3.png)
 
-![Screenshot 2](./public/screenshot5.PNG)
+![Screenshot 2](./public/screenshot5.png)
 
 ## Shopping Cart Page
 
-![Screenshot 3](./public/screenshot7.PNG)
+![Screenshot 3](./public/screenshot7.png)
 
 ## Checkout Page
 
-![Screenshot 4](./public/screenshot8.PNG)
+![Screenshot 4](./public/screenshot9.png)
 
 ## Description
 
