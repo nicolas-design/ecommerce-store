@@ -1,57 +1,7 @@
+/* eslint-disable array-callback-return */
 import camelcaseKeys from 'camelcase-keys';
 import dotenvSafe from 'dotenv-safe';
 import postgres from 'postgres';
-
-/*export const data = [
-  {
-    id: 1,
-    type: 'ring',
-    name: 'ocean',
-    quantity: 1,
-    color: 'blue',
-    image: '?',
-  },
-  {
-    id: 2,
-    type: 'ring',
-    name: 'rose',
-    quantity: 1,
-    color: 'pink',
-    image: '?',
-  },
-  {
-    id: 3,
-    type: 'ring',
-    name: 'beach',
-    quantity: 1,
-    color: 'red',
-    image: '?',
-  },
-  {
-    id: 4,
-    type: 'ring',
-    name: 'beach',
-    quantity: 1,
-    color: 'red',
-    image: '?',
-  },
-  {
-    id: 5,
-    type: 'bracelet',
-    name: 'beach',
-    quantity: 1,
-    color: 'red',
-    image: '?',
-  },
-  {
-    id: 6,
-    type: 'extra',
-    name: 'phone',
-    quantity: 1,
-    color: 'mixed',
-    image: '?',
-  },
-];*/
 
 dotenvSafe.config();
 

@@ -1,17 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Header from '../../../components/header';
 import {
   addToCart,
-  getCartValue,
   getCartValueId,
   getTotalQuantity,
 } from '../../../utils/cookies';
 
-export default function ringPage(props) {
+export default function RingPage(props) {
   const item = props.data;
   const [add, setAdd] = useState(getCartValueId);
   const [quantity, setQuantity] = useState(1);
@@ -77,7 +75,7 @@ export default function ringPage(props) {
   `;
 
   function createDrop(obj) {
-    let quant = [];
+    const quant = [];
     for (let i = 1; i <= obj; i++) {
       quant.push(
         <option key={i} value={i}>
@@ -109,11 +107,15 @@ export default function ringPage(props) {
               <div css={descript}>{prod.productDescription}</div>
               <div css={price}>{prod.productPrice}€</div>
 
-              <select data-cy="dropdown" css={drop} onChange={(e) => setQuantity(e.target.value)}>
+              <select
+                data-cy="dropdown"
+                css={drop}
+                onChange={(e) => setQuantity(e.target.value)}
+              >
                 {createDrop(prod.productQuantity)}
               </select>
               <button
-              data-cy="add"
+                data-cy="add"
                 css={button}
                 onClick={() => {
                   addToCart(

@@ -2,8 +2,6 @@
 import { css } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
-import { getTotalQuantity } from '../utils/cookies';
 
 const headerDiv = css`
   position: fixed;
@@ -16,10 +14,6 @@ const headerDiv = css`
   align-items: center;
   text-align: center;
   z-index: 1000;
-`;
-
-const bgcolor = css`
-  background-color: rgba(207, 63, 158, 0.23);
 `;
 
 const aurumStyle = css`
@@ -67,12 +61,11 @@ type Props = {
   total: number;
 };
 
-const aurum = css``;
 export default function Header(props: Props) {
   return (
     <header css={headerDiv}>
       <h3 css={aurumStyle}>Aurum</h3>
-      <h5 css={middleT}>handmade jewelery</h5>
+      <h5 css={middleT}>handmade jewelry</h5>
       <div css={imgStyle}>
         <Link href="/cart">
           <a data-cy="cart">
@@ -83,7 +76,9 @@ export default function Header(props: Props) {
       <div css={totalStyle}>{props.total}</div>
       <div css={homeStyle}>
         <Link href="/">
-          <Image src="/home.svg" height={20} width={20} />
+          <a>
+            <Image src="/home.svg" height={20} width={20} />
+          </a>
         </Link>
       </div>
     </header>

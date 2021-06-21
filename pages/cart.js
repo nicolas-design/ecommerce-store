@@ -1,13 +1,10 @@
 import { css } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Header from '../components/header';
 import {
-  deleteAll,
   deleteById,
-  getCartValue,
-  getCartValueId,
   getCartValueQuantityById,
   getTotalQuantity,
   setPrice,
@@ -84,7 +81,7 @@ export default function CartPage(props) {
                 onClick={() => {
                   deleteById(prod.id);
                   props.setTotal(getTotalQuantity);
-                  let newArr = prods.filter((productsF) => {
+                  const newArr = prods.filter((productsF) => {
                     return productsF.id !== prod.id;
                   });
                   console.log('new', newArr);
@@ -112,9 +109,9 @@ export default function CartPage(props) {
 
 export async function getServerSideProps(context) {
   console.log(context.req.cookies);
-  let cookies = JSON.parse(context.req.cookies.cart);
+  const cookies = JSON.parse(context.req.cookies.cart);
   console.log(cookies);
-  const { getProductById, getProducts } = await import('../utils/database');
+  const { getProductById } = await import('../utils/database');
   const res = await cookies.map((obj) => {
     return getProductById(obj.id);
   });

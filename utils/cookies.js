@@ -9,7 +9,7 @@ export function getTotalQuantity() {
   const cookieVal = cookies.getJSON('cart');
   let cookieQuantity;
   if (Array.isArray(cookieVal)) {
-    let newArr = cookieVal.map((prod) => {
+    const newArr = cookieVal.map((prod) => {
       return prod.quantity;
     });
     cookieQuantity = newArr.reduce(function (a, b) {
@@ -38,7 +38,7 @@ export function getCartValueQuantityById(id) {
   const cookieVal = cookies.getJSON('cart');
   let cookieQuan;
   if (Array.isArray(cookieVal)) {
-    let newArr = cookieVal.filter((prod) => {
+    const newArr = cookieVal.filter((prod) => {
       return prod.id === id;
     });
     cookieQuan = newArr.map((prod) => {
@@ -54,6 +54,7 @@ export function setPrice(example) {
   let sum = 0;
   example.map((prod) => {
     sum += getCartValueQuantityById(prod.id) * prod.productPrice;
+    return null;
   });
 
   return Math.round(sum * 100) / 100;
@@ -62,22 +63,21 @@ export function setPrice(example) {
 export function addToCart(productId, quantity) {
   const previousCookie = getCartValue();
   let newCart;
-
+  if (isNaN(productId)) parseInt(productId);
+  if (isNaN(quantity)) parseInt(quantity);
   if (previousCookie.length > 0) {
-    previousCookie.map((prod) => {
-      if (prod.id === productId) {
-        newCart = previousCookie.filter((prod) => prod.id !== productId);
-      } else {
-        newCart = [
-          ...previousCookie,
-          {
-            id: productId,
+    if (getCartValueId().includes(productId)) {
+      newCart = previousCookie.filter((prod2) => prod2.id !== productId);
+    } else {
+      newCart = [
+        ...previousCookie,
+        {
+          id: productId,
 
-            quantity: quantity,
-          },
-        ];
-      }
-    });
+          quantity: quantity,
+        },
+      ];
+    }
   } else {
     newCart = [
       {
@@ -96,10 +96,11 @@ export function deleteAll() {
 }
 
 export function deleteById(id) {
-  let newCart = getCartValue();
-  let sum = newCart.filter((prod) => {
+  const newCart = getCartValue();
+  const sum = newCart.filter((prod) => {
     return prod.id !== id;
   });
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (sum !== null) {
     cookies.set('cart', sum);
   } else {
@@ -107,7 +108,7 @@ export function deleteById(id) {
   }
 }
 
-/*export function getQuantityCart() {
+/* export function getQuantityCart() {
   const cookieVal = cookies.getJSON('cart');
   return Array.isArray(cookieVal) ? cookieVal : [];
 }

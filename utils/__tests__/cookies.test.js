@@ -1,10 +1,10 @@
 /**
  * @jest-environment jsdom
  */
-import { addToCart, deleteAll, getCartValue, setPrice } from '../cookies';
+import { addToCart, getCartValue, setPrice } from '../cookies';
 
 test('addToCookie works as expected when adding', () => {
-  let newCart = [
+  const newCart = [
     {
       id: 1,
       quantity: 2,
@@ -14,7 +14,7 @@ test('addToCookie works as expected when adding', () => {
 });
 
 test('addToCookie removes item when item already exists', () => {
-  let newCart = [];
+  const newCart = [];
   addToCart(1, 4);
 
   expect(getCartValue()).toStrictEqual(newCart);

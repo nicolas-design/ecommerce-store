@@ -143,7 +143,7 @@ export default function CheckOut(props) {
           ) : !/\d/.test(name) && name.length > 2 && name.length < 50 ? (
             <div>&#10004;</div>
           ) : (
-            <div>Enter a valid Name</div>
+            <div style={{ color: 'red' }}>Enter a valid Name</div>
           )}
         </div>
         <div css={item}>
@@ -164,7 +164,7 @@ export default function CheckOut(props) {
             lastName.length < 50 ? (
             <div>&#10004;</div>
           ) : (
-            <div>Enter a valid last Name</div>
+            <div style={{ color: 'red' }}>Enter a valid last Name</div>
           )}
         </div>
         <div css={item}>
@@ -183,7 +183,7 @@ export default function CheckOut(props) {
           ) : /\d+$/.test(adress) && adress.length > 2 && adress.length < 50 ? (
             <div>&#10004;</div>
           ) : (
-            <div>Enter a valid adress</div>
+            <div style={{ color: 'red' }}>Enter a valid adress</div>
           )}
         </div>
         <div css={item}>
@@ -201,7 +201,7 @@ export default function CheckOut(props) {
             ) : !/\d/.test(city) && city.length > 1 && city.length < 50 ? (
               <div>&#10004;</div>
             ) : (
-              <div>Enter a valid city</div>
+              <div style={{ color: 'red' }}>Enter a valid city</div>
             )}
           </label>
         </div>
@@ -223,7 +223,7 @@ export default function CheckOut(props) {
             country.length < 50 ? (
             <div>&#10004;</div>
           ) : (
-            <div>Enter a valid card number</div>
+            <div style={{ color: 'red' }}>Enter a valid card number</div>
           )}
         </div>
         <div css={item}>
@@ -244,7 +244,7 @@ export default function CheckOut(props) {
             post.length < 11 ? (
             <div>&#10004;</div>
           ) : (
-            <div>Enter a valid postal code</div>
+            <div style={{ color: 'red' }}>Enter a valid postal code</div>
           )}
         </div>
         <div css={item}>
@@ -267,7 +267,7 @@ export default function CheckOut(props) {
             email.length < 300 ? (
             <div>&#10004;</div>
           ) : (
-            <div>Enter a valid Email</div>
+            <div style={{ color: 'red' }}>Enter a valid Email</div>
           )}
         </div>
         <div>
@@ -289,7 +289,7 @@ export default function CheckOut(props) {
           ) : validateCreditCardNumber(card) ? (
             <div>&#10004;</div>
           ) : (
-            <div>Enter a valid cardnumber</div>
+            <div style={{ color: 'red' }}>Enter a valid cardnumber</div>
           )}
         </div>
         <div>
@@ -319,7 +319,7 @@ export default function CheckOut(props) {
           ) : Date.parse(date) - Date.parse(new Date()) > 0 ? (
             <div>&#10004;</div>
           ) : (
-            <div>Enter a valid Date</div>
+            <div style={{ color: 'red' }}>Enter a valid Date</div>
           )}
 
           {ccv === null ? (
@@ -327,7 +327,7 @@ export default function CheckOut(props) {
           ) : ccv.length >= 3 && ccv.length <= 4 && /^\d+$/.test(ccv) ? (
             <div>&#10004;</div>
           ) : (
-            <div>Enter a valid CVV</div>
+            <div style={{ color: 'red' }}>Enter a valid CVV</div>
           )}
         </div>
         <div css={item}>
@@ -346,7 +346,7 @@ export default function CheckOut(props) {
           ) : /^[a-zA-Z]+ [a-zA-Z]+$/.test(cardholder) ? (
             <div>&#10004;</div>
           ) : (
-            <div>Enter a valid Cardholder</div>
+            <div style={{ color: 'red' }}>Enter a valid Cardholder</div>
           )}
         </div>
         <div css={totalPriceStyle}>Total price: {totalPrice}€</div>
