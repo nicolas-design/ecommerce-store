@@ -3,6 +3,10 @@ import camelcaseKeys from 'camelcase-keys';
 import dotenvSafe from 'dotenv-safe';
 import postgres from 'postgres';
 
+const setPostgresDefaultsOnHeroku = require('./setPostgresDefaultsOnHeroku.js');
+
+setPostgresDefaultsOnHeroku();
+
 dotenvSafe.config();
 
 function connectToDatabase() {
