@@ -10,7 +10,7 @@ describe('Can navigate', () => {
     cy.get('[data-cy="cart"]').click();
     cy.contains('Check Out').should('be.visible');
     cy.get('[data-cy="checkout"]').click();
-    cy.location('pathname', { timeout: 10000 }).should('include', '/checkout');
+    cy.location('pathname', { timeout: 10000 }).should('include', '/testcheck');
     cy.contains('[data-cy=shipping]', 'Shipping address').should('be.visible');
     cy.get('[data-cy="name"]', { timeout: 10000 })
       .should('be.visible')
