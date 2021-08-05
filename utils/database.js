@@ -2,17 +2,19 @@
 import camelcaseKeys from 'camelcase-keys';
 import dotenvSafe from 'dotenv-safe';
 import postgres from 'postgres';
-
-const setPostgresDefaultsOnHeroku = require('./setPostgresDefaultsOnHeroku.js');
+import setPostgresDefaultsOnHeroku from '../setPostgresDefaultsOnHeroku';
 
 setPostgresDefaultsOnHeroku();
 
 dotenvSafe.config();
 
-function connectToDatabase() {
+function connectOneTimeToDatabase() {
   let sql;
 
   if (process.env.NODE_ENV === 'production') {
+    // Heroku needs SSL connections but
+    // has an "unauthorized" certificate
+    // https://devcenter.heroku.com/changelog-items/852
     sql = postgres({ ssl: { rejectUnauthorized: false } });
   } else {
     if (!globalThis.__postgresSqlClient) {
@@ -20,10 +22,11 @@ function connectToDatabase() {
     }
     sql = globalThis.__postgresSqlClient;
   }
+
   return sql;
 }
 
-const sql = connectToDatabase();
+const sql = connectOneTimeToDatabase();
 
 export async function getProducts() {
   const res = await sql`SELECT * FROM products`;
