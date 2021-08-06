@@ -8,7 +8,7 @@ import {
   getCartValueQuantityById,
   getTotalQuantity,
   setPrice,
-} from '../utils/cookies';
+} from '../util/cookies';
 
 const wrap = css`
   min-height: 100vh;
@@ -111,7 +111,7 @@ export async function getServerSideProps(context) {
   console.log(context.req.cookies);
   const cookies = JSON.parse(context.req.cookies.cart);
   console.log(cookies);
-  const { getProductById } = await import('../utils/database');
+  const { getProductById } = await import('../util/database');
   const res = await cookies.map((obj) => {
     return getProductById(obj.id);
   });

@@ -1,6 +1,6 @@
 import '../styles/globals.css';
 import { useState } from 'react';
-import { getTotalQuantity } from '../utils/cookies';
+import { getTotalQuantity } from '../util/cookies';
 
 function MyApp({ Component, pageProps }) {
   const [total, setTotal] = useState(getTotalQuantity());

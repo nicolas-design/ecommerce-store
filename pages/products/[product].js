@@ -96,7 +96,7 @@ export default function RingPage(props) {
 
 export async function getServerSideProps(context) {
   const product = context.query.product;
-  const { getProductsByType } = await import('../../utils/database');
+  const { getProductsByType } = await import('../../util/database');
   const data = await getProductsByType(product);
   console.log(data);
   return {

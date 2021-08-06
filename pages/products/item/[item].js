@@ -7,7 +7,7 @@ import {
   addToCart,
   getCartValueId,
   getTotalQuantity,
-} from '../../../utils/cookies';
+} from '../../../util/cookies';
 
 export default function RingPage(props) {
   const item = props.data;
@@ -139,7 +139,7 @@ export default function RingPage(props) {
 
 export async function getServerSideProps(context) {
   const item = context.query.item;
-  const { getProductById } = await import('../../../utils/database');
+  const { getProductById } = await import('../../../util/database');
   const data = await getProductById(item);
   return {
     props: {
