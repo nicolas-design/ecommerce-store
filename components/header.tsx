@@ -37,12 +37,17 @@ const middleT = css`
   margin-left: 45%;
   color: white;
   font-family: 'Vibur';
+
+  @media screen and (max-width: 700px) {
+    margin-left: 40%;
+  }
 `;
 
 const imgStyle = css`
   position: absolute;
   color: #95e1d3;
   right: 2%;
+  display: flex;
 `;
 
 const homeStyle = css`
@@ -57,6 +62,17 @@ const totalStyle = css`
   color: white;
 `;
 
+const imgSpace = css`
+  margin-right: 24px;
+`;
+
+const cartSpace = css``;
+
+const totalSpace = css`
+  margin-right: 4px;
+  color: white;
+`;
+
 type Props = {
   total: number;
 };
@@ -65,21 +81,25 @@ export default function Header(props: Props) {
   return (
     <header css={headerDiv}>
       <h3 css={aurumStyle}>Aurum</h3>
+
       <h5 css={middleT}>handmade jewelry</h5>
+
       <div css={imgStyle}>
-        <Link href="/cart">
-          <a data-cy="cart">
-            <Image src="/cart.svg" height={20} width={20} />
-          </a>
-        </Link>
-      </div>
-      <div css={totalStyle}>{props.total}</div>
-      <div css={homeStyle}>
-        <Link href="/">
-          <a>
-            <Image src="/home.svg" height={20} width={20} />
-          </a>
-        </Link>
+        <div css={imgSpace}>
+          <Link href="/">
+            <a>
+              <Image src="/home.svg" height={20} width={20} />
+            </a>
+          </Link>
+        </div>
+        <div css={totalSpace}>{props.total}</div>
+        <div>
+          <Link href="/cart">
+            <a data-cy="cart">
+              <Image src="/cart.svg" height={20} width={20} />
+            </a>
+          </Link>
+        </div>
       </div>
     </header>
   );
