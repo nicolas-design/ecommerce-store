@@ -2,12 +2,16 @@
 import camelcaseKeys from 'camelcase-keys';
 import dotenvSafe from 'dotenv-safe';
 import postgres from 'postgres';
-import setPostgresDefaultsOnHeroku from '../setPostgresDefaultsOnHeroku';
+import setPostgresDefaultsOnHeroku from './setPostgresDefaultsOnHeroku';
 
 setPostgresDefaultsOnHeroku();
 
+// Read the PostgreSQL secret connection information
 dotenvSafe.config();
 
+// Connect to PostgreSQL over SSL when in "production" environments such as Heroku
+// Connect only once to the database
+// https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
 function connectOneTimeToDatabase() {
   let sql;
 
@@ -26,6 +30,7 @@ function connectOneTimeToDatabase() {
   return sql;
 }
 
+// Connect to PostgreSQL
 const sql = connectOneTimeToDatabase();
 
 export async function getProducts() {
