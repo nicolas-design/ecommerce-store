@@ -24,7 +24,15 @@ export default function RingPage(props) {
   const gridWrap = css`
     display: grid;
     grid-template-rows: repeat(10, 50px);
-    grid-template-columns: 500px 80px 400px auto;
+    grid-template-columns: 45% 10% 35% auto;
+    @media screen and (max-width: 900px) {
+      grid-template-columns: 45% 10% 40% auto;
+    }
+    @media screen and (max-width: 600px) {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
   `;
 
   const imgStyle = css`
@@ -45,6 +53,9 @@ export default function RingPage(props) {
     margin-top: 20px;
     word-spacing: 4px;
     line-height: 1.6;
+    @media screen and (max-width: 900px) {
+      grid-row-start: 3;
+    }
   `;
 
   const price = css`
@@ -52,6 +63,12 @@ export default function RingPage(props) {
     grid-row-start: 6;
     justify-self: center;
     font-weight: bold;
+    @media screen and (max-width: 900px) {
+      grid-row-start: 7;
+    }
+    @media screen and (max-width: 600px) {
+      margin: 10px;
+    }
   `;
 
   const button = css`
@@ -64,6 +81,9 @@ export default function RingPage(props) {
     border: none;
     font-weight: bold;
     margin: 10px;
+    @media screen and (max-width: 900px) {
+      grid-row-start: 9;
+    }
   `;
 
   const drop = css`
@@ -72,6 +92,9 @@ export default function RingPage(props) {
     justify-self: center;
     height: 40px;
     width: 100px;
+    @media screen and (max-width: 900px) {
+      grid-row-start: 8;
+    }
   `;
 
   function createDrop(obj) {
@@ -93,6 +116,9 @@ export default function RingPage(props) {
         {item.map((prod) => {
           return (
             <div key={prod.id} css={gridWrap}>
+              <div css={header}>
+                {prod.productColor} {prod.productName} {prod.productType}
+              </div>
               <div css={imgStyle}>
                 <Image
                   src={`/${prod.productImg}`}
@@ -101,9 +127,7 @@ export default function RingPage(props) {
                   height={500}
                 />
               </div>
-              <div css={header}>
-                {prod.productColor} {prod.productName} {prod.productType}
-              </div>
+
               <div css={descript}>{prod.productDescription}</div>
               <div css={price}>{prod.productPrice}€</div>
 
