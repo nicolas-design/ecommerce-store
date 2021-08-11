@@ -12,22 +12,28 @@ const backgroundPage = css`
   width: 100%;
   z-index: -1;
   margin: 0px;
-  text-align: center;
+  align-items: center;
   display: flex;
   justify-content: center;
-  padding: 210px 0;
 `;
 
 const buttonDiv = css`
+  text-align: center;
+
   background-color: transparent;
   border: 7px solid;
   font-size: 40px;
   font-weight: bold;
   border-radius: 10px;
-  padding: 50px;
+  padding: 40px;
   color: #fff;
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff,
     0 0 80px #0ff, 0 0 90px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;
+
+  @media screen and (max-height: 550px) {
+    font-size: 32px;
+    padding: 30px;
+  }
 `;
 
 const div2 = css`
@@ -37,17 +43,26 @@ const div2 = css`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  @media screen and (max-width: 550px) {
+    padding-top: 15px;
+    flex-direction: column;
+    height: 120vh;
+  }
 `;
 
 const flexItem = css`
   background-color: #95e1d3;
-  width: 350px;
-  height: 350px;
+  width: 30vw;
+  height: 30vw;
   border-radius: 50%;
   text-align: center;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  @media screen and (max-width: 550px) {
+    width: 35vw;
+    height: 35vw;
+  }
 `;
 
 const cursorTest = css`

@@ -14,7 +14,7 @@ const wrap2 = css`
   padding: 70px 20px;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 `;
 
