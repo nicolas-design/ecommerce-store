@@ -63,6 +63,10 @@ const flexItem = css`
     width: 35vw;
     height: 35vw;
   }
+  @media screen and (max-width: 380px) {
+    width: 50vw;
+    height: 50vw;
+  }
 `;
 
 const cursorTest = css`

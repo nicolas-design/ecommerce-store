@@ -20,6 +20,9 @@ const wrap2 = css`
 
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 400px) {
+    padding: 70px 0;
+  }
 `;
 
 const item = css`
@@ -30,6 +33,9 @@ const item = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media screen and (max-width: 400px) {
+    margin: 10px 20px;
+  }
 `;
 const total = css`
   display: flex;

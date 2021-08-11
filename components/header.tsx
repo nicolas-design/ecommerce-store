@@ -41,6 +41,14 @@ const middleT = css`
   @media screen and (max-width: 700px) {
     margin-left: 40%;
   }
+
+  @media screen and (max-width: 400px) {
+    margin-left: 37%;
+  }
+
+  @media screen and (max-width: 365px) {
+    margin-left: 34%;
+  }
 `;
 
 const imgStyle = css`
@@ -64,6 +72,9 @@ const totalStyle = css`
 
 const imgSpace = css`
   margin-right: 24px;
+  @media screen and (max-width: 600px) {
+    margin-right: 12px;
+  }
 `;
 
 const cartSpace = css``;
