@@ -42,7 +42,7 @@ const middleT = css`
     margin-left: 40%;
   }
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 450px) {
     margin-left: 37%;
   }
 
